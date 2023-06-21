@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <h3><b>Enumerables Project</b></h3>
+  <h3><b>School Library Project</b></h3>
 
 </div>
 
@@ -11,7 +11,7 @@
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 Enumerables-Project ](#-enumerables-project-)
+- [📖 School-Library-Project ](#-school-library-project-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -29,9 +29,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Enumerables-Project <a name="about-project"></a>
+# 📖 School Library-Project <a name="about-project"></a>
 
-**Enumerables-Project** is a simple program developed to use a module inside a Ruby class. The module 'MyEnumerable' implements a subset of the functionality of <a href="https://ruby-doc.org/core-3.0.0/Enumerable.html">Enumerable</a>.
+**School-Library-Project** is a simple program developed to show the use of oop module in Ruby. It implements the functionality of <a href="https://ruby-doc.org/core-3.0.0/Class.html">Enumerable</a>.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -48,6 +48,7 @@
 
 ### Key Features <a name="key-features"></a>
 
+- **Set up Classes in Ruby**
 - **Set up Ruby linters**
 - **Ruby best practices and language style guides in code**
 
@@ -71,7 +72,7 @@ In order to run this project you need:
 ### Setup
 
 Install Ruby
-Go to github and find the repository enumerables-project
+Go to github and find the repository School Library-project
 Click on code and copy then go to your gitbash cli on your computer Clone this repository to your desired folder
 
 <!--
@@ -79,7 +80,7 @@ Example commands:
 
 ```sh
   cd my-folder
-  git clone git@github.com:rosemutai/enumerables-project.git
+  git clone https://github.com/Jeddaa/school-library-oop.git
 ```
 --->
 
@@ -96,7 +97,7 @@ GitHub Pages
 Example:
 
 ```sh
-  git@github.com:rosemutai/enumerables-project.git
+  https://github.com/Jeddaa/school-library-oop.git
 ```
  -->
 
@@ -105,12 +106,6 @@ Example:
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
-
-👤 **ROSE MUTAI**
-
-- GitHub: [@rosemutai](https://github.com/rosemutai)
-- Twitter: [@\_\_chepngetich](https://twitter.com/__chepngetich)
-- LinkedIn: [@rosemutai](https://linkedin.com/in/rosemutai)
 
 👤 **Fatihah Oduwole**
 
@@ -123,7 +118,9 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Add UI to the project]**
+- [ ] **[Implement the main app]**
+- [ ] **[Implement the functionality of adding a book]**
+- [ ] **[Implement the functionality of adding a person]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,7 +130,7 @@ Example:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/rosemutai/enumerables-project/issues).
+Feel free to check the [issues page](https://github.com/Jeddaa/school-library-oop/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -157,6 +154,6 @@ I would like to thank Microverse for this project
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/rosemutai/enumerables-project/blob/development/LICENSE) licensed.
+This project is [MIT](https://github.com/Jeddaa/school-library-oop/blob/develop/LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
