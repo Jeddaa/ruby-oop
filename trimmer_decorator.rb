@@ -1,4 +1,4 @@
-require_relative_path 'decorator'
+require_relative 'decorator'
 
 class TrimmerDecorator < Decorator
   def correct_name
