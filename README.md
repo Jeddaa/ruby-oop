@@ -31,7 +31,7 @@
 
 # 📖 School Library-Project <a name="about-project"></a>
 
-**School-Library-Project** is a simple program developed to show the use of oop module in Ruby. It implements the functionality of <a href="https://ruby-doc.org/core-3.0.0/Class.html">Enumerable</a>.
+**School-Library-Project** is a simple program developed to show the use of oop module in Ruby. It implements the functionality of <a href="https://ruby-doc.org/core-3.0.0/Class.html">Classes</a>.
 
 ## 🛠 Built With <a name="built-with"></a>
 
