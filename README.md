@@ -119,6 +119,7 @@ Example:
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **[Implement the main app]**
+- [ ] **[Implement the ui]**
 - [ ] **[Implement the functionality of adding a book]**
 - [ ] **[Implement the functionality of adding a person]**
 
