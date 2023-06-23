@@ -21,7 +21,7 @@
     - [Usage](#usage)
     - [Deployment](#deployment)
   - [👥 Authors ](#-authors-)
-  - [🔭 Future Features ](#-future-features-)
+  <!-- - [🔭 Future Features ](#-future-features-) -->
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
   - [🙏 Acknowledgments ](#-acknowledgments-)
@@ -86,7 +86,14 @@ Example commands:
 
 ### Usage
 
-To run the project, execute the queries in the files
+To run the project, execute the folllowing in a terminal.
+
+```sh
+cd my-project
+gem install
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Deployment
 
@@ -109,12 +116,12 @@ Example:
 
 👤 **Fatihah Oduwole**
 
-- GitHub: [@rosemutai](https://github.com/jeddaa)
-- Twitter: [@\_\_chepngetich](https://twitter.com/_jeddaah)
-- LinkedIn: [@rosemutai](https://linkedin.com/in/fatihahoduwole)
+- GitHub: [@jeddaa](https://github.com/jeddaa)
+- Twitter: [jeddaah](https://twitter.com/_jeddaah)
+- LinkedIn: [@jedda](https://linkedin.com/in/fatihahoduwole)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
+<!-- FUTURE FEATURES
 
 ## 🔭 Future Features <a name="future-features"></a>
 
@@ -123,7 +130,7 @@ Example:
 - [ ] **[Implement the functionality of adding a book]**
 - [ ] **[Implement the functionality of adding a person]**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- CONTRIBUTING -->
 
@@ -155,6 +162,6 @@ I would like to thank Microverse for this project
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/Jeddaa/school-library-oop/blob/develop/LICENSE) licensed.
+This project is [MIT](https://github.com/Jeddaa/school-library-oop/blob/develop/LICENSE)licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
