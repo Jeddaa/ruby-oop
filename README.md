@@ -21,7 +21,7 @@
     - [Usage](#usage)
     - [Deployment](#deployment)
   - [👥 Authors ](#-authors-)
-  - [🔭 Future Features ](#-future-features-)
+  <!-- - [🔭 Future Features ](#-future-features-) -->
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
   - [🙏 Acknowledgments ](#-acknowledgments-)
@@ -114,7 +114,7 @@ Example:
 - LinkedIn: [@rosemutai](https://linkedin.com/in/fatihahoduwole)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
+<!-- FUTURE FEATURES
 
 ## 🔭 Future Features <a name="future-features"></a>
 
@@ -123,7 +123,7 @@ Example:
 - [ ] **[Implement the functionality of adding a book]**
 - [ ] **[Implement the functionality of adding a person]**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- CONTRIBUTING -->
 
