@@ -39,9 +39,9 @@ class App
 
     people.each do |person|
       @people << if person['type'] == 'Teacher'
-                   Teacher.new(person['age'], person['name'], person['specialization'], parent_permission: true)
+                   Teacher.new(person['age'], person['specialization'], person['name'], parent_permission: true)
                  else
-                   Student.new(nil, person['age'], person['name'], parent_permission: person['parent_permission'])
+                   Student.new(1, person['age'], person['parent_permission'], person['name'])
                  end
     end
 
@@ -62,14 +62,25 @@ class App
   def list_all_people
     @people.each do |person|
       if person.instance_of?(Student)
-        puts "[Student]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
+        puts "[Student]: ID: #{person.id}, Name: #{person.name}, age: #{person.age} parent permission: #{person.parent_permission}"
       else
-        puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
+        puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age} specialization: #{person.specialization}"
       end
     end
 
   end
 
+  #method to create a book
+  def create_book
+    puts 'Enter book title:'
+    title = gets.chomp
+    puts 'Enter book author:'
+    author = gets.chomp
+
+    book = Book.new(title, author)
+    @books << book
+    puts 'Book created successfully.'
+  end
 
   # Method to create a person
   def create_person
@@ -93,18 +104,6 @@ class App
       teacher = Teacher.new(age, specialization, name)
       @people.push(teacher)
     puts 'Person created successfully.'
-  end
-
-  # Method to create a book
-  def create_book
-    puts 'Enter book title:'
-    title = gets.chomp
-    puts 'Enter book author:'
-    author = gets.chomp
-
-    book = Book.new(title, author)
-    @books << book
-    puts 'Book created successfully.'
   end
 
   # Method to create a rental
@@ -149,7 +148,7 @@ class App
     end
   end
 end
-def show_menu
+def options
   puts ''
   puts 'Please choose an option by entering a number:'
   puts '1 - List all books'
@@ -184,4 +183,14 @@ def on_exit
     end
 
     File.write('files/people.json', JSON.pretty_generate(updated_people))
+
+     updated_rentals = []
+
+    @rentals.each do |rental|
+      updated_rentals << {'title' => rental.book.title, 'author' => rental.book.author, 'date' => rental.date}
+    end
+
+    File.write('files/rentals.json', JSON.pretty_generate(updated_rentals))
+    exit
+  end
 end
