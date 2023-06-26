@@ -121,6 +121,12 @@ Example:
 - LinkedIn: [@jedda](https://linkedin.com/in/fatihahoduwole)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+👤 **Umair Hamza**
+
+- GitHub: [@emhamza](https://github.com/emhamza)
+- Twitter: [@uhamzaz](https://twitter.com/uhamzaz)
+- LinkedIn: [Umair Hamza](https://www.linkedin.com/in/umair-hamza-a8262b261/)
+
 <!-- FUTURE FEATURES
 
 ## 🔭 Future Features <a name="future-features"></a>
