@@ -8,12 +8,46 @@ require 'pry'
 require 'json'
 
 class App
-  attr_reader :books, :person, :rentals, :classroom
+  attr_reader :books, :people, :rentals, :classroom
 
   def initialize
     @books = []
-    @person = []
+    @people = []
     @rentals = []
+  end
+
+  #method to fetch data from json file
+  def fetch_data(file_name)
+    if File.exist?("files/#{file_name}.json")
+       File.read("files/#{file_name}.json")
+    else
+      empty_json = [].to_json
+      File.write("files/#{file_name}.json", empty_json)
+      empty_json
+    end
+  end
+
+  #method to get data from json file
+  def get_data()
+    books = JSON.parse(fetch_data('books'))
+    people = JSON.parse(fetch_data('people'))
+    rentals = JSON.parse(fetch_data('rentals'))
+
+    books.each do |book|
+      @books << Book.new(book['title'], book['author'])
+    end
+
+    people.each do |person|
+      @people << if person['type'] == 'Teacher'
+                   Teacher.new(person['age'], person['name'], person['specialization'], parent_permission: true)
+                 else
+                   Student.new(nil, person['age'], person['name'], parent_permission: person['parent_permission'])
+                 end
+    end
+
+    rentals.each do |rental|
+      @rentals << Rental.new(rental)
+    end
   end
 
   # Method to list all books
@@ -22,28 +56,20 @@ class App
     @books.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
     end
-
   end
 
   # Method to list all people
   def list_all_people
-    # @person.each do |person|
-    #   if person.instance_of?(Student)
-    #     puts "[Student]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
-    #   else
-    #     puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
-    #   end
-    # end
-    if File.exist?('person.json')
-      puts 'All People:'
-      data = JSON.parse(File.read('person.json'))
-      data.each do |item|
-        puts item
+    @people.each do |person|
+      if person.instance_of?(Student)
+        puts "[Student]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
+      else
+        puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
       end
-    else
-      puts 'No data for persons'
     end
+
   end
+
 
   # Method to create a person
   def create_person
@@ -59,50 +85,13 @@ class App
       print 'Does student have parent permission [Y/N]: '
       parent_permission = gets.chomp.downcase == 'y'
       student = Student.new(1, age, parent_permission, name)
-      @person.push(student)
-      student_data = "ID: #{student.id}, Name: #{student.name}, age: #{student.age}"
-      data = {
-        "category": "Student",
-        "ID": student.id,
-        "Name": student.name,
-        "age": student.age
-      }
-      json_data = JSON.generate(data)
-      if File.exist?('person.json')
-        existing_data = JSON.parse(File.read('person.json'))
-      else
-        existing_data = []
-      end
-      existing_data << json_data
-
-      File.open('person.json', 'w') do |file|
-        file.write(JSON.pretty_generate(existing_data))
-      end
+      @people.push(student)
 
     when 2
       print 'What is the teachers specialization: '
       specialization = gets.chomp
       teacher = Teacher.new(age, specialization, name)
-      @person.push(teacher)
-      data = {
-        "category": "Teacher",
-        "ID": teacher.id,
-        "Name": teacher.name,
-        "age": teacher.age
-      }
-      json_data = JSON.generate(data)
-      if File.exist?('person.json')
-        existing_data = JSON.parse(File.read('person.json'))
-      else
-        existing_data = []
-      end
-      existing_data << json_data
-
-      File.open('person.json', 'w') do |file|
-        file.write(JSON.pretty_generate(existing_data))
-      end
-    end
-
+      @people.push(teacher)
     puts 'Person created successfully.'
   end
 
@@ -128,7 +117,7 @@ class App
     book_index = gets.chomp.to_i
 
     puts 'select person by number'
-    @person.each_with_index do |person, index|
+    @people.each_with_index do |person, index|
       puts "#{index} - #{person.class}, Name: #{person.name}"
     end
 
@@ -136,13 +125,13 @@ class App
     puts 'Enter date:'
     date = gets.chomp
 
-    rental = Rental.new(date, @books[book_index], @person[person_index])
+    rental = Rental.new(date, @books[book_index], @people[person_index])
     @rentals << rental
     puts 'Rental created successfully.'
   end
 
   # Method to list rentals
-  def list_rentals_for_person
+  def list_rentals
     puts 'all id'
     @rentals.each do |rental|
       puts " #{rental.person.id}, Name: #{rental.person.name}"
@@ -154,10 +143,45 @@ class App
     @rentals.each do |rental|
       if rental.person.id == id
         puts "Title: #{rental.book.title}, Author: #{rental.book.author}, Date: #{rental.date}"
-
       else
         puts 'rental not found'
       end
     end
   end
+end
+def show_menu
+  puts ''
+  puts 'Please choose an option by entering a number:'
+  puts '1 - List all books'
+  puts '2 - List all people'
+  puts '3 - Create a person'
+  puts '4 - Create a book'
+  puts '5 - Create a rental'
+  puts '6 - List all rentals for a given person id'
+  puts '7 - Exit'
+end
+
+def on_exit
+    # puts 'Thank you for using the Library'
+    updated_books = []
+
+    @books.each do |book|
+      updated_books << { 'title' => book.title, 'author' => book.author }
+    end
+
+    File.write('files/books.json', JSON.pretty_generate(updated_books))
+
+    updated_people = []
+
+    @people.each do |person|
+      if person.instance_of?(Teacher)
+        updated_people << { 'type' => 'Teacher', 'id' => person.id, 'name' => person.name, 'age' => person.age,
+                            'specialization' => person.specialization }
+      elsif person.instance_of?(Student)
+        updated_people << { 'type' => 'Student', 'id' => person.id, 'name' => person.name, 'age' => person.age,
+                            'parent_permission' => person.parent_permission }
+      end
+    end
+
+    File.write('files/people.json', JSON.pretty_generate(updated_people))
 end
