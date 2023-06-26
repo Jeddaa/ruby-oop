@@ -16,10 +16,10 @@ class App
     @rentals = []
   end
 
-  #method to fetch data from json file
+  # method to fetch data from json file
   def fetch_data(file_name)
     if File.exist?("files/#{file_name}.json")
-       File.read("files/#{file_name}.json")
+      File.read("files/#{file_name}.json")
     else
       empty_json = [].to_json
       File.write("files/#{file_name}.json", empty_json)
@@ -27,7 +27,7 @@ class App
     end
   end
 
-  #method to get data from json file
+  # method to get data from json file
   def get_data()
     books = JSON.parse(fetch_data('books'))
     people = JSON.parse(fetch_data('people'))
@@ -67,9 +67,7 @@ class App
         puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
       end
     end
-
   end
-
 
   # Method to create a person
   def create_person
@@ -92,76 +90,77 @@ class App
       specialization = gets.chomp
       teacher = Teacher.new(age, specialization, name)
       @people.push(teacher)
-    puts 'Person created successfully.'
-  end
-
-  # Method to create a book
-  def create_book
-    puts 'Enter book title:'
-    title = gets.chomp
-    puts 'Enter book author:'
-    author = gets.chomp
-
-    book = Book.new(title, author)
-    @books << book
-    puts 'Book created successfully.'
-  end
-
-  # Method to create a rental
-  def create_rental
-    puts 'select book by number'
-    @books.each_with_index do |book, index|
-      puts "#{index} - Title: #{book.title}, Author: #{book.author}"
+      puts 'Person created successfully.'
     end
 
-    book_index = gets.chomp.to_i
+    # Method to create a book
+    def create_book
+      puts 'Enter book title:'
+      title = gets.chomp
+      puts 'Enter book author:'
+      author = gets.chomp
 
-    puts 'select person by number'
-    @people.each_with_index do |person, index|
-      puts "#{index} - #{person.class}, Name: #{person.name}"
+      book = Book.new(title, author)
+      @books << book
+      puts 'Book created successfully.'
     end
 
-    person_index = gets.chomp.to_i
-    puts 'Enter date:'
-    date = gets.chomp
+    # Method to create a rental
+    def create_rental
+      puts 'select book by number'
+      @books.each_with_index do |book, index|
+        puts "#{index} - Title: #{book.title}, Author: #{book.author}"
+      end
 
-    rental = Rental.new(date, @books[book_index], @people[person_index])
-    @rentals << rental
-    puts 'Rental created successfully.'
-  end
+      book_index = gets.chomp.to_i
 
-  # Method to list rentals
-  def list_rentals
-    puts 'all id'
-    @rentals.each do |rental|
-      puts " #{rental.person.id}, Name: #{rental.person.name}"
+      puts 'select person by number'
+      @people.each_with_index do |person, index|
+        puts "#{index} - #{person.class}, Name: #{person.name}"
+      end
+
+      person_index = gets.chomp.to_i
+      puts 'Enter date:'
+      date = gets.chomp
+
+      rental = Rental.new(date, @books[book_index], @people[person_index])
+      @rentals << rental
+      puts 'Rental created successfully.'
     end
-    puts 'select id'
-    id = gets.chomp.to_i
 
-    puts 'All Rentals for this id:'
-    @rentals.each do |rental|
-      if rental.person.id == id
-        puts "Title: #{rental.book.title}, Author: #{rental.book.author}, Date: #{rental.date}"
-      else
-        puts 'rental not found'
+    # Method to list rentals
+    def list_rentals
+      puts 'all id'
+      @rentals.each do |rental|
+        puts " #{rental.person.id}, Name: #{rental.person.name}"
+      end
+      puts 'select id'
+      id = gets.chomp.to_i
+
+      puts 'All Rentals for this id:'
+      @rentals.each do |rental|
+        if rental.person.id == id
+          puts "Title: #{rental.book.title}, Author: #{rental.book.author}, Date: #{rental.date}"
+        else
+          puts 'rental not found'
+        end
       end
     end
   end
-end
-def show_menu
-  puts ''
-  puts 'Please choose an option by entering a number:'
-  puts '1 - List all books'
-  puts '2 - List all people'
-  puts '3 - Create a person'
-  puts '4 - Create a book'
-  puts '5 - Create a rental'
-  puts '6 - List all rentals for a given person id'
-  puts '7 - Exit'
-end
 
-def on_exit
+  def show_menu
+    puts ''
+    puts 'Please choose an option by entering a number:'
+    puts '1 - List all books'
+    puts '2 - List all people'
+    puts '3 - Create a person'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rentals for a given person id'
+    puts '7 - Exit'
+  end
+
+  def on_exit
     # puts 'Thank you for using the Library'
     updated_books = []
 
@@ -184,4 +183,11 @@ def on_exit
     end
 
     File.write('files/people.json', JSON.pretty_generate(updated_people))
+    updated_rentals = []
+    @rentals.each do |rental|
+      updated_rentals << { 'title' => rental.book.title, 'author' => rental.book.author, 'date' => rental.date }
+    end
+    File.write('files/rentals.json', JSON.pretty_generate(updated_rentals))
+    exit
+  end
 end

@@ -86,7 +86,7 @@ Example commands:
 
 ### Usage
 
-To run the project, execute the folllowing in a terminal.
+To run the project, execute the following in a terminal.
 
 ```sh
 cd my-project
