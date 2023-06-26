@@ -5,6 +5,7 @@ require_relative 'classroom'
 require_relative 'book'
 require_relative 'rental'
 require 'pry'
+require 'json'
 
 class App
   attr_reader :books, :person, :rentals, :classroom
@@ -21,17 +22,26 @@ class App
     @books.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
     end
+
   end
 
   # Method to list all people
   def list_all_people
-    puts 'All People:'
-    @person.each do |person|
-      if person.instance_of?(Student)
-        puts "[Student]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
-      else
-        puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
+    # @person.each do |person|
+    #   if person.instance_of?(Student)
+    #     puts "[Student]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
+    #   else
+    #     puts "[Teacher]: ID: #{person.id}, Name: #{person.name}, age: #{person.age}"
+    #   end
+    # end
+    if File.exist?('person.json')
+      puts 'All People:'
+      data = JSON.parse(File.read('person.json'))
+      data.each do |item|
+        puts item
       end
+    else
+      puts 'No data for persons'
     end
   end
 
@@ -50,13 +60,47 @@ class App
       parent_permission = gets.chomp.downcase == 'y'
       student = Student.new(1, age, parent_permission, name)
       @person.push(student)
-      # binding.pry
+      student_data = "ID: #{student.id}, Name: #{student.name}, age: #{student.age}"
+      data = {
+        "category": "Student",
+        "ID": student.id,
+        "Name": student.name,
+        "age": student.age
+      }
+      json_data = JSON.generate(data)
+      if File.exist?('person.json')
+        existing_data = JSON.parse(File.read('person.json'))
+      else
+        existing_data = []
+      end
+      existing_data << json_data
+
+      File.open('person.json', 'w') do |file|
+        file.write(JSON.pretty_generate(existing_data))
+      end
 
     when 2
       print 'What is the teachers specialization: '
       specialization = gets.chomp
       teacher = Teacher.new(age, specialization, name)
       @person.push(teacher)
+      data = {
+        "category": "Teacher",
+        "ID": teacher.id,
+        "Name": teacher.name,
+        "age": teacher.age
+      }
+      json_data = JSON.generate(data)
+      if File.exist?('person.json')
+        existing_data = JSON.parse(File.read('person.json'))
+      else
+        existing_data = []
+      end
+      existing_data << json_data
+
+      File.open('person.json', 'w') do |file|
+        file.write(JSON.pretty_generate(existing_data))
+      end
     end
 
     puts 'Person created successfully.'
