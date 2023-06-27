@@ -86,7 +86,7 @@ Example commands:
 
 ### Usage
 
-To run the project, execute the folllowing in a terminal.
+To run the project, execute the following in a terminal.
 
 ```sh
 cd my-project
@@ -120,6 +120,12 @@ Example:
 - Twitter: [jeddaah](https://twitter.com/_jeddaah)
 - LinkedIn: [@jedda](https://linkedin.com/in/fatihahoduwole)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+👤 **Umair Hamza**
+
+- GitHub: [@emhamza](https://github.com/emhamza)
+- Twitter: [@uhamzaz](https://twitter.com/uhamzaz)
+- LinkedIn: [Umair Hamza](https://www.linkedin.com/in/umair-hamza-a8262b261/)
 
 <!-- FUTURE FEATURES
 
