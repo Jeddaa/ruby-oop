@@ -1,33 +1,3 @@
-# def menu(app)
-#   app.show_menu
-#   print '>>> :'
-#   gets.chomp.to_i
-# end
-
-# def manage_selection(option)
-#   tasks = {
-#     1 => :list_all_books,
-#     2 => :list_all_people,
-#     3 => :create_person,
-#     4 => :create_book,
-#     5 => :create_rental,
-#     6 => :list_rentals,
-#     7 => :on_exit,
-#     default: :invalid_option
-#   }
-
-#   selection = tasks[option] || tasks[:default]
-#   app.send(selection)
-# end
-
-# def start_page(app)
-#   loop do
-#     option = menu(app)
-#     manage_selection(option)
-#     puts "\n"
-#   end
-# end
-
 class HomePage
   def initialize(app)
     @app = app
@@ -42,24 +12,17 @@ class HomePage
   def manage_selection(options)
     tasks = {
       1 => :list_all_books,
-      2 => :list_of_people,
+      2 => :list_all_people,
       3 => :create_person,
       4 => :create_book,
       5 => :create_rental,
-      6 => :list_rentals_for_person,
-      7 => :exit,
+      6 => :list_rentals,
+      7 => :on_exit,
       default: :invalid_option
     }
 
     selection = tasks[options] || tasks[:default]
-
-    if selection == :list_rentals_for_person
-      puts 'Enter the person ID:'
-      person_id = gets.chomp.to_i
-      @app.send(selection, person_id)
-    else
-      @app.send(selection)
-    end
+    @app.send(selection)
 
     exit if options == 7
   end

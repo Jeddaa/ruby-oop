@@ -1,0 +1,23 @@
+[
+  {
+    "type": "Student",
+    "id": 51,
+    "name": "jedda",
+    "age": 21,
+    "parent_permission": true
+  },
+  {
+    "type": "Teacher",
+    "id": 243,
+    "name": "hamza",
+    "age": 32,
+    "specialization": "maths"
+  },
+  {
+    "type": "Student",
+    "id": 923,
+    "name": "trial",
+    "age": 12,
+    "parent_permission": true
+  }
+]
